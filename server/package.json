@@ -11,8 +11,12 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.18.0",
+    "bcrypt": "^3.0.3",
+    "beepbeep": "^1.2.2",
     "chalk": "^2.4.2",
+    "cors": "^2.8.5",
     "express": "^4.16.4",
+    "jsonwebtoken": "^8.4.0",
     "mongoose": "^5.4.4",
     "quagga": "^0.12.1"
   }

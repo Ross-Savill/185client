@@ -3,28 +3,25 @@ const express = require('express');
 const mongoose = require('mongoose');
 const chalk = require('chalk');
 const app = express();
-const Quagga = require('quagga');
+const mongodPort = 27017;
 const port = 5000;
+const cors = require('cors');
+const router = require('./routes/');
+const beep = require('beepbeep')
 
-app.get('/', (req,res) => res.send("185 API"));
-app.post('/', (req, res) => res.send("Got a POST request"));
-app.put('/', (req, res) => res.send("Got a PUT request"));
-app.delete('/', (req, res) => res.send("Got a DELETE request"));
-
+app.use(cors());
+app.use('/', router)
 app.listen(port, () => console.log(`Listening on port: ${chalk.green(port)}`))
 
-Quagga.decodeSingle({
-    decoder: {
-        readers: ["code_128_reader"] // List of active readers
-    },
-    locate: true, // try to locate the barcode in the image
-    // You can set the path to the image in your server
-    // or using it's base64 data URI representation data:image/jpg;base64, + data
-    src: '/barcode_image.jpg'
-}, function(result){
-    if(result.codeResult) {
-        console.log("result", result.codeResult.code);
-    } else {
-        console.log("not detected");
-    }
+// Connect to MongoD
+mongoose.connect(`mongodb://localhost:${mongodPort}/185`);
+mongoose.connection.on('connected', () => {
+  console.log('connected', () => {
+      console.log(chalk.green(`connected to mongod on port: ${mongodPort}`))
+  });
+});
+
+mongoose.connection.on('error', () => {
+  console.log(chalk.red(`failed to connect to mongod on port: ${mongodPort}`));
+  beep(1);
 });
