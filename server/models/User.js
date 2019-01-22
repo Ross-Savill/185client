@@ -3,9 +3,9 @@ const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
     id:Number,
-    username: String,
+    email: String,
     password: String,
     role: String
 })
 
-module.exports = mongoose.model('User', productSchema)
+module.exports = mongoose.model('User', userSchema)
