@@ -14,6 +14,7 @@ class LoginForm extends Component {
 
   inputChange = (e) => {
     const { id, value } = e.currentTarget
+    console.log(id, value)
     this.setState({ [id]:value })
   }
   
