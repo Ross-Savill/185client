@@ -45,7 +45,7 @@ class RegisterForm extends Component {
       <>
         <div id="form-container">
           <div id="login-form">
-            <h2>185 Warehouse Dashboard</h2>
+            <h2>185 Warehousing Dashboard</h2>
             <p>Please enter your details below to register</p>
             <hr />
             <form>
