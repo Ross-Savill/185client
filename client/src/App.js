@@ -5,6 +5,7 @@ import LoginForm from './Components/LoginForm';
 import RegisterForm from './Components/RegisterForm';
 import OrdersList from './Components/OrdersList'
 import PickList from './Components/PickList'
+import Dashboard from './Components/Dashboard'
 
 class App extends Component {
   render() {
@@ -15,6 +16,7 @@ class App extends Component {
           <Route path="/register" component={RegisterForm} />
           <Route path="/orders" exact component={OrdersList} />
           <Route path="/orders/:orderID/pick" exact component={PickList} />
+          <Route path="/dashboard" exact component={Dashboard} />
         </>
       </Router>
     );
