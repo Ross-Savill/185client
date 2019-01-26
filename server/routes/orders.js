@@ -152,7 +152,7 @@ router.post('/currentOrder', (req, res) => {
   if(typeof orderID == 'number') {
   	currentOrderID = orderID;
   	console.log(`[!] On order #${currentOrderID}`)
-    return returnSuccess(res, `Listening on port ${currentOrderID}`)
+    return returnSuccess(res, `Listening on order ${currentOrderID}`)
   } else {
     return returnError(res, `orderID expected to be type 'number', you have provided type '${typeof orderID}'`)
   }

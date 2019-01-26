@@ -9,7 +9,8 @@ const createToken = (doc) => {
   const token = jwt.sign(
     {username: doc.username, role: doc.role},
     'Fp21nsEbDT',
-    {expiresIn: '14d'}
+    //{expiresIn: '14d'}
+    {expiresIn: 20}
   );
   return token;
 }
@@ -22,9 +23,29 @@ returnError = (res, message) => {
   })
 }
 
-const verifyToken = (token) => {
+const isAuthenticated = (req,res, next) => {
+  const {token}  = req.headers;
+  if(token) {
+    const secret = 'Fp21nsEbDT';
+    jwt.verify(token, secret, (err, decoded) => {
+      if (err) return returnError(res, err)
+      next();
+    })
+  } else {
+    return returnError(res, 'Token not present in headers')
+  }
 
 }
+
+router.post('/status', isAuthenticated, (req,res) => {
+  return res.status(200).send({
+    success: true,
+    timestamp: Date.now(),
+    message: "Authenticated"
+  })
+})
+
+
 
 router.post('/register', (req,res) => {
   const { username, password } = req.body;
@@ -63,6 +84,8 @@ router.post('/register', (req,res) => {
       returnError(res, "You must provide a username and password")
     }
 })
+
+
 router.put('/users', (req, res) => {
   const {username, password} = req.body;
   if(username && password) {
@@ -96,6 +119,9 @@ router.put('/users', (req, res) => {
     returnError(res, "You must provide a username and password")
   }
 })
+
+
+
 router.post('/login', (req,res) => {
   const {username, password} = req.body;
   if(username && password) {
