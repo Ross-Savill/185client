@@ -7,6 +7,7 @@ const productSchema = new Schema({
   size: String,
   productCode: String,
   stockCount: Number,
+  pickCount: Number,
   color: String
 });
 

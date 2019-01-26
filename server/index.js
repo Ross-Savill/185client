@@ -13,15 +13,15 @@ const beep = require('beepbeep');
 app.use(express.json());
 app.use(cors());
 app.use('/', router)
-app.listen(port, () => console.log(`Listening on port: ${chalk.green(port)}`))
+app.listen(port, () => console.log(`[!] Listening on port: ${chalk.green(port)}`))
 
 // Connect to MongoD
-mongoose.connect(`mongodb://localhost:${mongodPort}/185`);
+mongoose.connect(`mongodb://localhost:${mongodPort}/185`, { useNewUrlParser: true });
   mongoose.connection.on('connected', () => {
-  console.log(chalk.green(`Connected to MongoD on port: ${mongodPort}`));
+  console.log(`[!] Connected to MongoD on port: ${mongodPort}`);
 });
 
 mongoose.connection.on('error', () => {
-  console.log(chalk.red(`Failed to connect to MongoD on port: ${mongodPort}`));
+  console.log(chalk.red(`[X] Failed to connect to MongoD on port: ${mongodPort}`));
   beep()
 });

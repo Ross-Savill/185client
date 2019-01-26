@@ -17,7 +17,7 @@ router.post('/product', (req, res) => {
     Product.findOne({barcode})
       .then(doc => {
         if(doc) {
-          returnError(res, 'Product already exists')
+          returnError(res, `Product with barocde ${barcode} already exists`)
         } else {
           Product.create({barcode, productName, size, productCode, stockCount}, function(err) {
             if(err) {
@@ -72,7 +72,7 @@ router.post('/product', (req, res) => {
 })
 //Read
 
-router.get('/products', (req, res) => {
+router.get('/product/all', (req, res) => {
   Product.find({})
     .then(doc => {
       if(!doc) {
@@ -112,14 +112,14 @@ router.get('/product/:product', (req, res) => {
   })
 
 //Update
-router.put('/product/:product', (req, res) => {
+router.put('/product', (req, res) => {
   const { barcode, productName, size, productCode, stockCount } = req.body
-  const {product} = req.params;
+  console.log(barcode)
   if (barcode && productName && size && productCode && stockCount) {
-  Product.findOne({ barcode: product})
+  Product.findOne({ barcode })
     .then(doc => {
         if(!doc) {
-          return returnError(res, `Product #${product} not found`)
+          return returnError(res, `Product  with barcode ${barcode} not found`)
         } else {
           doc.barcode = barcode;
           doc.productName = productName;
@@ -130,7 +130,7 @@ router.put('/product/:product', (req, res) => {
           return res.status(200).send({
             success: true,
             timestamp: Date.now(),
-            message: `Product #${product} updated`,
+            message: `Product with barcode ${barcode} updated`,
             data: doc
           })
         }
@@ -145,17 +145,17 @@ router.put('/product/:product', (req, res) => {
 
 
 //Delete
-router.delete('/product/:product', (req, res) => {
-  const { product } = req.params;
-  Product.deleteOne({ barcode: product })
+router.delete('/product', (req, res) => {
+  const { barcode } = req.body;
+  Product.deleteOne({ barcode })
     .then(doc => {
       if(!doc) {
-        return returnError(res, `Product #${product} not found`)
+        return returnError(res, `Product with barcode ${barcode} not found`)
       } else {
         res.status(200).send({
           success: true,
           timestamp: Date.now(),
-          message: `Product #${product} deleted`,
+          message: `Product with barcode ${barcode} deleted`,
           data: doc
         })
       }
