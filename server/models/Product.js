@@ -5,10 +5,10 @@ const productSchema = new Schema({
   barcode:  Number,
   productName: String,
   size: String,
-  productCode: String,
+  color: String,
+  aeroCode: String,
   stockCount: Number,
-  pickCount: Number,
-  color: String
+
 });
 
 module.exports = mongoose.model('Product', productSchema);

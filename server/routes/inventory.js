@@ -12,14 +12,14 @@ returnError = (res, message) => {
 
 //Create
 router.post('/product', (req, res) => {
-  const { barcode, productName, size, productCode, stockCount } = req.body
-  if (barcode && productName && size && productCode && stockCount) {
+  const { barcode, productName, size, color, aeroCode, stockCount } = req.body
+  if (barcode && productName && size && color && aeroCode && stockCount) {
     Product.findOne({barcode})
       .then(doc => {
         if(doc) {
           returnError(res, `Product with barocde ${barcode} already exists`)
         } else {
-          Product.create({barcode, productName, size, productCode, stockCount}, function(err) {
+          Product.create({barcode, productName, size, color, aeroCode, stockCount}, function(err) {
             if(err) {
               res.status(200).send({
                 success: false,
@@ -29,7 +29,8 @@ router.post('/product', (req, res) => {
                   barcode: barcode,
                   productName,
                   size,
-                  productCode,
+                  color,
+                  aeroCode,
                   stockCount
                 }
               })
@@ -42,7 +43,8 @@ router.post('/product', (req, res) => {
                   barcode,
                   productName,
                   size,
-                  productCode,
+                  color,
+                  aeroCode,
                   stockCount
                 }
               })
@@ -64,7 +66,8 @@ router.post('/product', (req, res) => {
         barcode: barcode,
         productName:productName,
         size:size,
-        productCode:productCode,
+        color:color,
+        aeroCode:aeroCode,
         stockCount:stockCount
       }
     })
@@ -113,9 +116,9 @@ router.get('/product/:product', (req, res) => {
 
 //Update
 router.put('/product', (req, res) => {
-  const { barcode, productName, size, productCode, stockCount } = req.body
+  const { barcode, productName, size, color, aeroCode, stockCount } = req.body
   console.log(barcode)
-  if (barcode && productName && size && productCode && stockCount) {
+  if (barcode && productName && size && color && aeroCode && stockCount) {
   Product.findOne({ barcode })
     .then(doc => {
         if(!doc) {
@@ -124,7 +127,8 @@ router.put('/product', (req, res) => {
           doc.barcode = barcode;
           doc.productName = productName;
           doc.size = size;
-          doc.productCode = productCode;
+          doc.color = color;
+          doc.aeroCode = aeroCode;
           doc.stockCount = stockCount;
           doc.save()
           return res.status(200).send({
