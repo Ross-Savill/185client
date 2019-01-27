@@ -17,11 +17,23 @@ class LoginForm extends Component {
     console.log(id, value)
     this.setState({ [id]:value })
   }
-  
+
   login = (e) => {
     e.preventDefault()
     console.log("Login Button Pressed")
     // axios.post the username and password to authentication path on our API
+    axios.post('http://localhost:5000/auth/login', {
+      username: this.state.email,
+      password: this.state.password
+    })
+    .then(response => {
+      if(response.data.success === true) {
+        const token = response.data.token;
+        console.log(token)
+      } else {
+        this.setState({error:response.data.message})
+      }
+    })
   }
 
   render() {
