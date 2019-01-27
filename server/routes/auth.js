@@ -9,8 +9,7 @@ const createToken = (doc) => {
   const token = jwt.sign(
     {username: doc.username, role: doc.role},
     'Fp21nsEbDT',
-    //{expiresIn: '14d'}
-    {expiresIn: 20}
+    {expiresIn: '14d'}
   );
   return token;
 }
@@ -29,19 +28,20 @@ const isAuthenticated = (req,res, next) => {
     const secret = 'Fp21nsEbDT';
     jwt.verify(token, secret, (err, decoded) => {
       if (err) return returnError(res, err)
+      req.role = decoded.role;
       next();
     })
   } else {
     return returnError(res, 'Token not present in headers')
   }
-
 }
 
 router.post('/status', isAuthenticated, (req,res) => {
   return res.status(200).send({
     success: true,
     timestamp: Date.now(),
-    message: "Authenticated"
+    message: "Authenticated",
+    role: req.role
   })
 })
 
