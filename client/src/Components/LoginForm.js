@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-<<<<<<< HEAD
 import '../Styles/Login.css';
-=======
 import '../Styles/App.css';
->>>>>>> 40576ab0d3d20e79a0256709fd1539a7651815d6
 import axios from 'axios';
 
 class LoginForm extends Component {
@@ -21,17 +18,11 @@ class LoginForm extends Component {
     console.log(id, value)
     this.setState({ [id]:value })
   }
-<<<<<<< HEAD
   
-=======
-
->>>>>>> 40576ab0d3d20e79a0256709fd1539a7651815d6
   login = (e) => {
     e.preventDefault()
     console.log("Login Button Pressed")
     // axios.post the username and password to authentication path on our API
-<<<<<<< HEAD
-=======
     axios.post('http://localhost:5000/auth/login', {
       username: this.state.email,
       password: this.state.password
@@ -44,7 +35,6 @@ class LoginForm extends Component {
         this.setState({error:response.data.message})
       }
     })
->>>>>>> 40576ab0d3d20e79a0256709fd1539a7651815d6
   }
 
   render() {
