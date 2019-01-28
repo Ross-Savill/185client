@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+const express = require ('express');
+const router = express.Router();
+
+=======
 const express = require('express');
 const router = express.Router();
 
@@ -8,6 +13,7 @@ router.get('/ping', (req,res) => {
     message: 'pong'
   })
 })
+>>>>>>> 40576ab0d3d20e79a0256709fd1539a7651815d6
 
 
 module.exports = router;

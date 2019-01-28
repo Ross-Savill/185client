@@ -1,0 +1,30 @@
+{
+    "orderId": 1,
+	"status": "new/partial/complete",
+	"createdAt": "23/01/2019", 
+	"completedAt": null,
+    "products": [
+                    {
+                        "productId": 1,
+                        "aeroCode": "BBG10LEM-A",
+                        "pickCount": 0,
+                        "orderCount": 4,
+                        "ProductName": "Aero G1 Bat Limited Edition - SH",
+                        "colour": "Blue",
+                        "size": "SH",
+                        "barcode": "9421028077477",
+                        "productPicked": false
+                    },
+                    {
+                        "productId": 2,
+                        "aeroCode": "BBG10M-A",
+                        "pickCount": 0,
+                        "orderCount": 3,
+                        "ProductName": "Aero G1 Bat - SH",
+                        "colour": "Blue",
+                        "size": "SH",
+                        "barcode": "9421028077484",
+                        "productPicked": false
+                    }
+    ]
+}

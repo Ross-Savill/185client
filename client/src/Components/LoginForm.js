@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../Styles/Login.css';
 import '../Styles/App.css';
 import axios from 'axios';
 
@@ -17,7 +18,7 @@ class LoginForm extends Component {
     console.log(id, value)
     this.setState({ [id]:value })
   }
-
+  
   login = (e) => {
     e.preventDefault()
     console.log("Login Button Pressed")

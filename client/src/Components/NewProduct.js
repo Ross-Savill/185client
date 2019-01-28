@@ -34,7 +34,7 @@ class NewProduct extends Component {
                     </p>
                     <p>
                         <label htmlFor="aeroCode">Aero Code: </label>
-                        <input type="text" id="password" onChange={this.inputChange}></input><br />
+                        <input type="text" id="aeroCode" onChange={this.inputChange}></input><br />
                     </p>
                     <p>
                         <label htmlFor="colour">Colour: </label>
