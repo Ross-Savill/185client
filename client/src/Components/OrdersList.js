@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
-<<<<<<< HEAD
-import '../Styles/Orders.css';
-=======
 import '../Styles/App.css';
->>>>>>> 40576ab0d3d20e79a0256709fd1539a7651815d6
 import axios from 'axios';
 
 class OrdersList extends Component {
