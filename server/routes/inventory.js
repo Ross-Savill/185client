@@ -1,34 +1,3 @@
-<<<<<<< HEAD
-const express = require ('express');
-const router = express.Router();
-
-
-// Create
-router.post('/', (req, res) => {
-    
-})
-
-// Read
-router.get('', (req, res) => {
-
-})
-
-router.get('./:id', (req, res) => {
-
-})
-
-
-// Update
-router.put('/:id', (req, res) => {
-
-})
-
-
-// Destroy
-router.delete('/:id', (req, res) => {
-    
-})
-=======
 const express = require('express');
 const router = express.Router();
 const Product = require('../models/Product');
@@ -199,7 +168,6 @@ router.delete('/product', (req, res) => {
       return returnError(res, `Error: ${err}`)
     })
   })
->>>>>>> 40576ab0d3d20e79a0256709fd1539a7651815d6
 
 
 module.exports = router;
