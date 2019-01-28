@@ -17,7 +17,13 @@
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "jsonwebtoken": "^8.4.0",
+<<<<<<< HEAD
+=======
+    "mongo-seeding": "^3.1.0",
+>>>>>>> 40576ab0d3d20e79a0256709fd1539a7651815d6
     "mongoose": "^5.4.4",
-    "quagga": "^0.12.1"
+    "quagga": "^0.12.1",
+    "socket-io": "^1.0.0",
+    "socket.io-client": "^2.2.0"
   }
 }
