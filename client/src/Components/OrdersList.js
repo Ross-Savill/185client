@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../Styles/Orders.css';
+import '../Styles/App.css';
 import axios from 'axios';
 
 class OrdersList extends Component {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import '../Styles/';
+import '../Styles/App.css';
 import axios from 'axios';
 import QuickActions from './QuickActions';
 import StockAlerts from './StockAlerts';
