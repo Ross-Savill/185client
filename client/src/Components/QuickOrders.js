@@ -13,6 +13,9 @@ class QuickOrders extends Component {
     return (
       <>
         <div id="quick-orders">
+        Open: <br />
+        Partial:<br />
+        See all >>
         </div>
       </>
     )

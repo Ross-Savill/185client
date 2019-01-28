@@ -14,6 +14,7 @@ class Dashboard extends Component {
     return (
       <>
         <Sidebar />
+        {/* Render whatever page you want to focus on here e.g. add new item page */}
       </>
     )
   }

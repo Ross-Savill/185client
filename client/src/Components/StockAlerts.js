@@ -13,6 +13,11 @@ class StockAlerts extends Component {
     return (
       <>
         <div id="stock-alerts">
+        Low: <br />
+        Item 1 <br />
+        Item 2 <br />
+        Item 3 <br />
+        See all >>
         </div>
       </>
     )
