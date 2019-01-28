@@ -26,7 +26,7 @@ class Sidebar extends Component {
               <hr />
               <li>Total Inventory</li>
               <li>Add Inbound Stock</li>
-              <li>Alerts</li>
+              <li>Alerts (3)</li>
             </ul>
             <ul>
               <li>Products</li>

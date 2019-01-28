@@ -68,10 +68,7 @@ html {
   padding: 15px;
   color: #fff;
   background-color: rgb(102, 124, 150);
-}
-
-#userbox button{
-  margin-left: 20px;
+  text-align: center;
 }
 
 #navmenu {
