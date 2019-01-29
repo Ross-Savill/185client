@@ -70,16 +70,11 @@ INBOUND STOCK
 
 ## A workflow diagram of the user journey/s.
 
-
 ## Wireframes
-
 
 ## Database Entity Relationship Diagrams
 
-
 ## Data Flow Diagram
-
-
 
 # Design documentation: details of project management & planning process:
 ## Project plan & timeline
@@ -99,8 +94,6 @@ Week 2 of 4:
 
 Week 3 of 4:
 * Hit MVP
-* Deploy back end
-* Visit client for testing
 * Deploy front end
 
 Week 4 of 4:
