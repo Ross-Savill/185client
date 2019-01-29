@@ -13,10 +13,12 @@ class App extends Component {
     return (
       <Router>
         <>
-          <Route path="/login" component={LoginForm} />
+          <Route path="/login" exact component={LoginForm} />
           <Route path="/register" component={RegisterForm} />
 
           <Route path="/dashboard" component={Dashboard} />
+          <Route path="/dashboard/products/new" component={NewProduct} />
+
           <Route path="/newproduct" component={NewProduct} />
           <Route path="/orders" exact component={OrdersList} />
           

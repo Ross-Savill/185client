@@ -55,6 +55,7 @@ html {
 #sidebar {
   float: left;
   position: fixed;
+  display: block;
   height: 100%;
   width: 250px;
   background-color: rgb(136, 159, 187);
