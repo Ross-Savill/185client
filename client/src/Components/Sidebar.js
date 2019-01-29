@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
 import '../Styles/App.css';
-import axios from 'axios';
-import QuickActions from './QuickActions';
-import StockAlerts from './StockAlerts';
-import QuickOrders from './QuickOrders';
 
 class Sidebar extends Component {
   constructor(props) {
@@ -12,13 +8,17 @@ class Sidebar extends Component {
     }
   }
 
+  logout = () => {
+    localStorage.removeItem('token')
+  }
+
   render() {
     return (
       <>
         <div id="sidebar">
           <div id="userbox">
           👋🏻 Welcome, Sam.<br />
-            <button>Log out</button>
+            <button onClick={this.logout}>Log out</button>
           </div>
           <div id ="navmenu">
             <ul>

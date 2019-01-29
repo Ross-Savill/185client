@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import '../Styles/App.css';
+import { Redirect } from "react-router-dom";
 import axios from 'axios';
 
 class LoginForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: "",
+      username: "",
       password: "",
       error: ""
     }
@@ -20,16 +21,16 @@ class LoginForm extends Component {
   
   login = (e) => {
     e.preventDefault()
-    console.log("Login Button Pressed")
     // axios.post the username and password to authentication path on our API
-    axios.post('http://localhost:5000/auth/login', {
-      username: this.state.email,
+    axios.post('https://vast-earth-81912.herokuapp.com/auth/login', {
+      username: this.state.username,
       password: this.state.password
     })
     .then(response => {
       if(response.data.success === true) {
         const token = response.data.token;
-        console.log(token)
+        localStorage.setItem('token', token)
+        this.setState({authenticated: true})
       } else {
         this.setState({error:response.data.message})
       }
@@ -37,6 +38,12 @@ class LoginForm extends Component {
   }
 
   render() {
+    const {authenticated} = this.state
+
+    if(authenticated) {
+      return <Redirect to="/dashboard" />
+    }
+
     return (
       <>
         <div id="form-container">
@@ -47,8 +54,8 @@ class LoginForm extends Component {
             {this.state.error && <span className="error">{this.state.error}</span>}
             <form>
               <p>
-                <label htmlFor="email">Email: </label>
-                <input type="text" id="email" onChange={this.inputChange}></input><br />
+                <label htmlFor="username">Username: </label>
+                <input type="text" id="username" onChange={this.inputChange}></input><br />
               </p>
               <p>
                 <label htmlFor="password">Password: </label>
@@ -56,10 +63,6 @@ class LoginForm extends Component {
               </p>
               <button id="login" onClick={this.login}>Log In</button>
             </form>
-            {/* <p>
-              <span>Email: {this.state.email}</span> <br/>
-              <span>Password: {this.state.password}</span>
-            </p> */}
           </div>
         </div>
       </>
