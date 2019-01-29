@@ -25,3 +25,8 @@ mongoose.connection.on('error', () => {
   console.log(chalk.red(`[X] Failed to connect to MongoD on port: ${mongodPort}`));
   beep()
 });
+
+mongoose.connection.on('error', () => {
+  console.log(chalk.red(`failed to connect to mongod on port: ${mongodPort}`));
+  beep(1);
+});
