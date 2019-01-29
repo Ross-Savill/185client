@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import '../Styles/Login.css';
 import '../Styles/App.css';
 import axios from 'axios';
 
