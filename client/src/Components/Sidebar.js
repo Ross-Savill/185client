@@ -16,9 +16,43 @@ class Sidebar extends Component {
     return (
       <>
         <div id="sidebar">
-          <QuickActions />
-          <StockAlerts />
-          <QuickOrders />
+          <div id="userbox">
+          👋🏻 Welcome, Sam.<br />
+            <button>Log out</button>
+          </div>
+          <div id ="navmenu">
+            <ul>
+              <li>Stock</li>
+              <hr />
+              <li>Total Inventory</li>
+              <li>Add Inbound Stock</li>
+              <li>Alerts (3)</li>
+            </ul>
+            <ul>
+              <li>Products</li>
+              <hr />
+              <li>View All</li>
+              <li>Add</li>
+              <li>Delete</li>
+              <li>Edit</li>
+            </ul>
+            <ul>
+              <li>Orders</li>
+              <hr />
+              <li>View All</li>
+              <li>Add</li>
+              <li>Delete</li>
+              <li>Edit</li>
+            </ul>
+            <ul>
+              <li>Users</li>
+              <hr />
+              <li>View All</li>
+              <li>Add</li>
+              <li>Delete</li>
+              <li>Edit</li>
+            </ul>
+          </div>
         </div>
       </>
     )

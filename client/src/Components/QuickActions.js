@@ -13,11 +13,13 @@ class QuickActions extends Component {
     return (
       <>
         <div id="quick-actions">
-          <a href="#">Create Order</a>
-          <a href="#">View/Edit Orders</a>
-          <a href="#">Add New Stock</a>
-          <a href="#">Delete Inventory Item</a>
-          <a href="#">Stock Correction</a>
+          <ul>
+            <li><a href="#">Create Order</a></li>
+            <li><a href="#">View/Edit Orders</a></li>
+            <li><a href="#">Add New Stock</a></li>
+            <li><a href="#">Delete Inventory Item</a></li>
+            <li><a href="#">Stock Correction</a></li>
+          </ul>
         </div>
       </>
     )
