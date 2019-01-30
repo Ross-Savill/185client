@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import LoginForm from './Components/LoginForm';
 import RegisterForm from './Components/RegisterForm';
 import NewProduct from './Components/NewProduct';
+import NewOrder from './Components/NewOrder';
 import OrdersList from './Components/OrdersList'
 import PickList from './Components/PickList'
 import Dashboard from './Components/Dashboard'
@@ -23,6 +24,7 @@ class App extends Component {
           <Route path="/orders" exact component={OrdersList} />
           
           <Route path="/orders/:orderID/pick" exact component={PickList} />
+          <Route path="/neworder" component={NewOrder} />
         </>
       </Router>
     );
