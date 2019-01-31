@@ -37,24 +37,24 @@ class Sidebar extends Component {
               <hr />
               <li><Link to="/dashboard/products">View All</Link></li>
               <li><Link to="/dashboard/products/add">Add</Link></li>
-              <li><Link to="/dashboard/products/delete">Delete</Link></li>
               <li><Link to="/dashboard/products/edit">Edit</Link></li>
+              <li><Link to="/dashboard/products/delete">Delete</Link></li>
             </ul>
             <ul>
               <li>Orders</li>
               <hr />
               <li><Link to="/dashboard/orders">View All</Link></li>
               <li><Link to="/dashboard/orders/add">Add</Link></li>
-              <li><Link to="/dashboard/orders/delete">Delete</Link></li>
               <li><Link to="/dashboard/orders/edit">Edit</Link></li>
+              <li><Link to="/dashboard/orders/delete">Delete</Link></li>
             </ul>
             <ul>
               <li>Users</li>
               <hr />
               <li><Link to="/dashboard/users">View All</Link></li>
               <li><Link to="/dashboard/users/add">Add</Link></li>
-              <li><Link to="/dashboard/users/delete">Delete</Link></li>
               <li><Link to="/dashboard/users/edit">Edit</Link></li>
+              <li><Link to="/dashboard/users/delete">Delete</Link></li>
             </ul>
           </div>
         </div>
