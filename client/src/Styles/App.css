@@ -4,12 +4,24 @@ html {
 
 /* Authentication Forms */
 
-#form-container {
+#authentication-container {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100vh;
   padding: 0px;
+}
+
+#crud-container {
+  margin-left: 270px;
+  min-height: 100vh;
+  padding-left: 50px;
+  padding-top: 30px;
+}
+
+#crud-container input {
+  width: 300px;
+  text-align: left;
 }
 
 #login-form {
@@ -64,7 +76,7 @@ html {
 }
 
 #userbox {
-  width: 250px;
+  width: 270px;
   height: auto;
   padding: 15px;
   color: #fff;
@@ -73,8 +85,7 @@ html {
 }
 
 #navmenu {
-  width: 250px;
-  padding: 15px;
+  width: 270px;
   text-align: center;
 }
 
@@ -82,6 +93,10 @@ html {
   list-style: none;
   margin-top: 20px;
   padding: 0px;
+}
+
+#navmenu a {
+  color: #000;
 }
 
 #navmenu hr {

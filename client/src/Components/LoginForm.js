@@ -45,7 +45,7 @@ class LoginForm extends Component {
 
     return (
       <>
-        <div id="form-container">
+        <div id="authentication-container">
           <div id="login-form">
             <h2>185 Warehouse Dashboard</h2>
             <p>Please enter your details below to log in</p>

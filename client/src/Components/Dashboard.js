@@ -25,7 +25,6 @@ class Dashboard extends Component {
       .then(res => {
         if(res.data.success) {
           this.setState({ loggedIn: true, ready: true })
-          console.log(this.state)
         } else {
         }
       })
