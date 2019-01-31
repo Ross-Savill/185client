@@ -37,7 +37,7 @@ html {
   font-size: 1em;
 }
 
-#login-form form button {
+#add-order form button {
   float: right;
   padding: 10px;
   font-size: 1rem;
@@ -94,7 +94,6 @@ html {
   margin: 0;
   padding: 0;
   position: relative;
-  /*perspective: 20px;*/
 }
 
 .suggestions li {
@@ -110,20 +109,6 @@ html {
   text-transform: capitalize;
 }
 
-.suggestions li:nth-child(even) {
-  transform: perspective(100px) rotateX(3deg) translateY(2px) scale(1.001);
-  background: linear-gradient(to bottom,  #ffffff 0%,#EFEFEF 100%);
-}
-
-.suggestions li:nth-child(odd) {
-  transform: perspective(100px) rotateX(-3deg) translateY(3px);
-  background: linear-gradient(to top,  #ffffff 0%,#EFEFEF 100%);
-}
-
-span.population {
-  font-size: 15px;
-}
-
-.hl {
-  background: #ffc600;
+#orderId input {
+  width: 20em;
 }

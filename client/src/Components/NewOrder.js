@@ -4,51 +4,24 @@ import axios from 'axios';
 
 class NewOrder extends Component {
     state = {
-        endpoint: "https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json"
+        endpoint: "https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json",
+        matchArray: []
     }
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       orderId: "",
-//       addProduct: "",
-//       matchArray: null
-//     }
-// /////////////
-
-// const endpoint = "https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json"
-
-// getCityData = () => {
-//     const cities = [];
-//     axios.get(this.state.endpoint)
-//     .then(blob => blob.json())
-//     .then(data => {
-//         console.log(data)
-//         cities.push(...data)
-//     })
-// }
 
     componentDidMount() {
         const cities = [];
-        console.log('hi')
         axios.get(this.state.endpoint)
         .then(blob => {
-            // blob.json())
-            // console.log(blob)
             const cities = blob.data
             this.setState({ cities }) 
         })
-        // .then(data => {
-        //     this.setState({ data })
-        //     // cities.push(...data)
-        // })
         .catch((err) => {
-            console.log('here')
+            console.log(err)
         })
     }
 
   findMatches = (wordToMatch, cities) => {
     return cities.filter(place => {
-      // here we need to figure out if the city or state matches what was searched
       const regex = new RegExp(wordToMatch, 'gi');
       return place.city.match(regex) || place.state.match(regex)
     });
@@ -56,26 +29,23 @@ class NewOrder extends Component {
 
   displayMatches = (e) => {
     const value = e.currentTarget.value
-    // const cities = this.getCityData()
-    if (this.state.cities) {
-        const { cities } = this.state
-        const matchArray = this.findMatches(value, cities);
-        console.log(matchArray)
-    }
-    // const matchArray = this.findMatches(value, cities);
-    // console.log(matchArray)
-    // const html = matchArray.map(place => {
-    //   const regex = new RegExp(this.value, 'gi');
-    //   const cityName = place.city.replace(regex, `<span class="hl">${this.value}</span>`);
-    //   const stateName = place.state.replace(regex, `<span class="hl">${this.value}</span>`);
-    //   return `
-    //     <li>
-    //       <span class="name">${cityName}, ${stateName}</span>
-    //       <span class="population">${(place.population)}</span>
-    //     </li>
-    //   `;
-    // }).join('');
-    // suggestions.innerHTML = html;
+        if (this.state.cities) {
+            const { cities } = this.state
+            const matchArray = this.findMatches(value, cities);
+            console.log(matchArray)
+            if(e.currentTarget.value == "") {
+                this.setState ({ matchArray: [] })          
+            } else {
+                this.setState ({ matchArray })
+            }
+            
+        
+            // return matchArray.map(place => {
+            //     const cityName = place.city
+            //     const stateName = place.state
+            // console.log(cityName, stateName)
+            // })
+        }   
     }
 
 //////////
@@ -87,9 +57,10 @@ class NewOrder extends Component {
   
     render() {
     console.log(this.state)
+    const suggestions = this.state.matchArray.map((suggestion, index) => {return(<li key={index}>{suggestion.city}</li>)})
       return (
-        <div id="form-container">
-            <div id="login-form">
+
+            <div id="crud-container">
             <h2>Add Order</h2>
             <p>Please enter the details of the new order below</p>
             <hr />
@@ -103,10 +74,12 @@ class NewOrder extends Component {
                         <input type="text" id="addProduct" onChange={this.displayMatches}></input><br />
                     </p>
                     <button id="addOrder" onClick={this.addOrder}>Add Order</button>
-                    </form>
+                </form>
+                <div className="suggestions">
+                    <ul>{suggestions}</ul>
                 </div>
-                </div>
-            )
+            </div>
+        )
     }
 }
 export default NewOrder;
