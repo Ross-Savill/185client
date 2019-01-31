@@ -1,19 +1,22 @@
 import React, { Component } from 'react';
 import '../Styles/App.css';
 import axios from 'axios';
-import { Redirect } from "react-router-dom";
 import Sidebar from './Sidebar'
+import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
 
 class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      authenticated: false
+      loggedIn: null,
+      ready: false
     }
   }
 
-  isLoggedIn = () => {
+  componentDidMount() {
     const token = localStorage.getItem('token')
+    if(token) {
+
     axios.post('https://vast-earth-81912.herokuapp.com/auth/status', null, {
       headers: {
         token
@@ -21,19 +24,34 @@ class Dashboard extends Component {
     })
       .then(res => {
         if(res.data.success) {
-          this.setState({ authenticated: true })
+          this.setState({ loggedIn: true, ready: true })
+          console.log(this.state)
         } else {
         }
       })
+    } else {
+      this.setState({redirect:true})
+    }
   }
 
   render() {
-    return (
-      <>
-        <Sidebar />
-        {/* Render whatever page you want to focus on here e.g. add new item page */}
-      </>
-    )}
+    if(!this.state.redirect){
+      if(this.state.ready) {
+        if(this.state.loggedIn){
+          return (
+            <>
+              <Sidebar />
+            </>
+        )} else {
+          this.setState({redirect:true})
+        }
+      } else {
+        return ("loading")
+      }
+   } else {
+     return <Redirect to="/login" />
+   }
+  }
 }
 
 export default Dashboard;
