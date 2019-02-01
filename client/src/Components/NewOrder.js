@@ -4,47 +4,40 @@ import axios from 'axios';
 
 class NewOrder extends Component {
     state = {
-        endpoint: "https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json",
+        endpoint: "https://vast-earth-81912.herokuapp.com/inventory/product/all",
         matchArray: []
     }
 
     componentDidMount() {
-        const cities = [];
+        const allProducts = [];
         axios.get(this.state.endpoint)
         .then(blob => {
-            const cities = blob.data
-            this.setState({ cities }) 
+            const allProducts = blob.data.data
+            this.setState({ allProducts })
         })
         .catch((err) => {
             console.log(err)
         })
     }
 
-  findMatches = (wordToMatch, cities) => {
-    return cities.filter(place => {
+  findMatches = (wordToMatch, allProducts) => {
+    return allProducts.filter(products => {
       const regex = new RegExp(wordToMatch, 'gi');
-      return place.city.match(regex) || place.state.match(regex)
+      return products.productName.match(regex) || products.productName.match(regex)
     });
   }
 
   displayMatches = (e) => {
     const value = e.currentTarget.value
-        if (this.state.cities) {
-            const { cities } = this.state
-            const matchArray = this.findMatches(value, cities);
+        if (this.state.allProducts) {
+            const { allProducts } = this.state
+            const matchArray = this.findMatches(value, allProducts);
             console.log(matchArray)
             if(e.currentTarget.value == "") {
                 this.setState ({ matchArray: [] })          
             } else {
                 this.setState ({ matchArray })
             }
-            
-        
-            // return matchArray.map(place => {
-            //     const cityName = place.city
-            //     const stateName = place.state
-            // console.log(cityName, stateName)
-            // })
         }   
     }
 
@@ -56,9 +49,10 @@ class NewOrder extends Component {
 
   
     render() {
-    console.log(this.state)
-    const suggestions = this.state.matchArray.map((suggestion, index) => {return(<li key={index}>{suggestion.city}</li>)})
-      return (
+    // console.log(this.state)
+    const suggestions = this.state.matchArray.map((suggestion, index) => {return(<li key={index}>{suggestion.ProductName}</li>)})
+    console.log(suggestions)
+    return (
 
             <div id="crud-container">
             <h2>Add Order</h2>
