@@ -51,7 +51,6 @@ class NewOrder extends Component {
     render() {
     // console.log(this.state)
     const suggestions = this.state.matchArray.map((suggestion, index) => {return(<li key={index}>Product: {suggestion.productName}, Aerocode: {suggestion.aeroCode}, Size: {suggestion.size}, Colour: {suggestion.color}, Barcode: {suggestion.barcode}, Stock Count: {suggestion.stockCount}</li>)})
-    console.log(suggestions)
     return (
 
             <div id="crud-container">
