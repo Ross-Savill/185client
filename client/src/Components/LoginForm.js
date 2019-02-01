@@ -15,10 +15,9 @@ class LoginForm extends Component {
 
   inputChange = (e) => {
     const { id, value } = e.currentTarget
-    console.log(id, value)
     this.setState({ [id]:value })
   }
-  
+
   login = (e) => {
     e.preventDefault()
     // axios.post the username and password to authentication path on our API
@@ -46,7 +45,7 @@ class LoginForm extends Component {
 
     return (
       <>
-        <div id="form-container">
+        <div id="authentication-container">
           <div id="login-form">
             <h2>185 Warehouse Dashboard</h2>
             <p>Please enter your details below to log in</p>

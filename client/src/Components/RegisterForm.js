@@ -43,7 +43,7 @@ class RegisterForm extends Component {
   render() {
     return (
       <>
-        <div id="form-container">
+        <div id="authentication-container">
           <div id="login-form">
             <h2>185 Warehousing Dashboard</h2>
             <p>Please enter your details below to register</p>

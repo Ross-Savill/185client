@@ -4,12 +4,24 @@ html {
 
 /* Authentication Forms */
 
-#form-container {
+#authentication-container {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100vh;
   padding: 0px;
+}
+
+#crud-container {
+  margin-left: 270px;
+  min-height: 100vh;
+  padding-left: 50px;
+  padding-top: 30px;
+}
+
+#crud-container input {
+  width: 300px;
+  text-align: left;
 }
 
 #login-form {
@@ -37,7 +49,7 @@ html {
   font-size: 1em;
 }
 
-#login-form form button {
+#add-order form button {
   float: right;
   padding: 10px;
   font-size: 1rem;
@@ -57,14 +69,14 @@ html {
   position: fixed;
   display: block;
   height: 100%;
-  width: 250px;
+  width: 270px;
   background-color: rgb(136, 159, 187);
   overflow-y: auto;
   overflow-x: hidden;
 }
 
 #userbox {
-  width: 220px;
+  width: 270px;
   height: auto;
   padding: 15px;
   color: #fff;
@@ -73,8 +85,7 @@ html {
 }
 
 #navmenu {
-  width: 190px;
-  padding: 30px;
+  width: 270px;
   text-align: center;
 }
 
@@ -84,6 +95,35 @@ html {
   padding: 0px;
 }
 
+#navmenu a {
+  color: #000;
+}
+
 #navmenu hr {
   width: 40%;
+}
+
+/* NEW ORDER CSS BELOW ADDED BY ROSS  */
+
+.suggestions {
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.suggestions li {
+  background: white;
+  list-style: none;
+  border-bottom: 1px solid #D8D8D8;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.14);
+  margin: 0;
+  padding: 20px;
+  transition: background 0.2s;
+  display: flex;
+  justify-content: space-between;
+  text-transform: capitalize;
+}
+
+#orderId input {
+  width: 20em;
 }
