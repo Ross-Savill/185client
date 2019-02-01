@@ -20,11 +20,6 @@ class App extends Component {
 
           <Route path="/dashboard" component={Dashboard} />
 
-<<<<<<< HEAD
-          <Route path="/newproduct" component={NewProduct} />
-          <Route path="/orders" exact component={OrdersList} />
-          <Route path="/inventory" component={Inventory} />
-=======
           {/* <Route path="/dashboard/inventory" component= />
           <Route path="/dashboard/inventory/add" component= />
           <Route path="/dashboard/inventory/alerts" component= /> */}
@@ -44,7 +39,6 @@ class App extends Component {
           <Route path="/dashboard/users/delete" component= />
           <Route path="/dashboard/users/edit" component= /> */}
 
->>>>>>> d1f33130d3510aef26eded4b7887cc50681b92b1
           <Route path="/orders/:orderID/pick" exact component={PickList} />
           <Route path="/neworder" component={NewOrder} />
         </>
