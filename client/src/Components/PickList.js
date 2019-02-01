@@ -10,7 +10,8 @@ class PickList extends Component {
       orderID: "",
       orderStatus: "",
       orderProducts: [],
-      online: false
+      online: false,
+      error: false
     }
   }
 
@@ -25,9 +26,13 @@ class PickList extends Component {
       self.setState({online: false})
     });
 
+    socket.on('error', function() {
+      console.log('error')
+      self.setState({error: true})
+    })
+
     socket.on('triggerUpdate', function () {
       self.retrieveData()
-      console.log('gott it');
     });
 
   }
@@ -120,15 +125,27 @@ class PickList extends Component {
       }
     }
 
+    checkErrors = () => {
+      const style={color:"#dc3545"}
+      console.log(this.state.error)
+      if(this.state.error) {
+        return <div style={style}>Wrong barcode</div>
+      } else {
+        return <div style={style}></div>
+      }
+    }
 
   render() {
-    const orders = this.listOrders()
+    const barcodeError = this.checkErrors();
+    const orders = this.listOrders();
     const online = this.checkOnline(this.state.online);
     const orderStatus = this.checkOrderStatus(this.state.orderStatus);
     return (
       <>
         <div id="pick-list-container">
             Status: {online}
+            <br/><br/>
+            {barcodeError}
             <br/><br/>
             <h2>Order: {this.state.orderID}</h2>
             <h3>Status: {orderStatus}</h3>
