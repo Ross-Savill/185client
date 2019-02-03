@@ -20,8 +20,8 @@ class App extends Component {
 
           <Route path="/dashboard" component={Dashboard} />
 
-          {/* <Route path="/dashboard/inventory" component= />
-          <Route path="/dashboard/inventory/add" component= />
+          <Route path="/dashboard/inventory" component={Inventory} />
+          {/* <Route path="/dashboard/inventory/add" component= />
           <Route path="/dashboard/inventory/alerts" component= /> */}
 
           {/* <Route path="/dashboard/products" component= /> */}
@@ -29,9 +29,9 @@ class App extends Component {
           {/* <Route path="/dashboard/products/delete" component= />
           <Route path="/dashboard/products/edit" component= /> */}
 
-          {/* <Route path="/dashboard/orders" component= />
-          <Route path="/dashboard/orders/add" component= />
-          <Route path="/dashboard/orders/delete" component= />
+          {/* <Route path="/dashboard/orders" component= /> */}
+          <Route path="/dashboard/orders/add" component={NewOrder}/>
+          {/* <Route path="/dashboard/orders/delete" component= />
           <Route path="/dashboard/orders/edit" component= />
 
           <Route path="/dashboard/users" component= />
