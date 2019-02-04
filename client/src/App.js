@@ -19,6 +19,7 @@ class App extends Component {
           <Route path="/register" component={RegisterForm} />
 
           <Route path="/dashboard" component={Dashboard} />
+          <Route path="/inventory" component={Inventory} />
 
           {/* <Route path="/dashboard/inventory" component= />
           <Route path="/dashboard/inventory/add" component= />
