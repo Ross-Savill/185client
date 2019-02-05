@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import '../Styles/App.css';
 import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
+import decode from 'jwt-decode';
+
 
 class Sidebar extends Component {
   constructor(props) {
@@ -15,38 +17,34 @@ class Sidebar extends Component {
     this.setState({loggedOut: true})
   }
 
+  getUsername = () => {
+     const token = localStorage.getItem('token')
+     const decodedToken = decode(token)
+     const {username} = decodedToken
+     if(username){return username} else {return null}
+  }
+
   render() {
     if(!this.state.loggedOut){
     return (
       <>
         <div id="sidebar">
           <div id="userbox">
-          👋🏻 Welcome, Sam.<br />
+          👋🏻 Welcome, {this.getUsername()}<br />
             <button onClick={this.logout}>Log out</button>
           </div>
           <div id ="navmenu">
             <ul>
               <li>Stock</li>
               <hr />
-              <li><Link to="/dashboard/inventory">Total Inventory</Link></li>
-              <li><Link to="/dashboard/inventory/add">Add Inbound Stock</Link></li>
-              <li><Link to="/dashboard/inventory/alerts">Alerts (3)</Link></li>
-            </ul>
-            <ul>
-              <li>Products</li>
-              <hr />
-              <li><Link to="/dashboard/products">View All</Link></li>
-              <li><Link to="/dashboard/products/add">Add</Link></li>
-              <li><Link to="/dashboard/products/edit">Edit</Link></li>
-              <li><Link to="/dashboard/products/delete">Delete</Link></li>
+              <li><Link to="/dashboard/inventory">Manage Stock</Link></li>
             </ul>
             <ul>
               <li>Orders</li>
               <hr />
-              <li><Link to="/dashboard/orders">View All</Link></li>
+              <li><Link to="/dashboard/orders">Manage Orders</Link></li>
               <li><Link to="/dashboard/orders/add">Add</Link></li>
               <li><Link to="/dashboard/orders/edit">Edit</Link></li>
-              <li><Link to="/dashboard/orders/delete">Delete</Link></li>
             </ul>
             <ul>
               <li>Users</li>

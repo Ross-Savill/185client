@@ -225,14 +225,15 @@ class Inventory extends Component {
 
   render() {
     return (
-      <div className="container">
-      <AddInventory/>
-      {this.messageBox()}
-      {this.openEditModal()}
-      {this.openDeleteModal()}
-      {this.datatablePage()}
+      <div id="crud-container">
+        <div className="container">
+          <AddInventory/>
+          {this.messageBox()}
+          {this.openEditModal()}
+          {this.openDeleteModal()}
+          {this.datatablePage()}
+        </div>
       </div>
-
     )}
 }
 
