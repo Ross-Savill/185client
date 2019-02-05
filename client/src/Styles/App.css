@@ -127,3 +127,8 @@ html {
 #orderId input {
   width: 20em;
 }
+
+.suggested-list-item:hover {
+  background: lightpink;
+  cursor: pointer;
+}
