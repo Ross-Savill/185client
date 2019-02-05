@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 import '../Styles/App.css';
 import axios from 'axios';
 
@@ -7,8 +7,11 @@ class NewOrder extends Component {
     state = {
         endpoint: "https://vast-earth-81912.herokuapp.com/inventory/product/all",
         matchArray: [],
-        orderList:[]
+        orderList:[],
+        alreadyInOrder: []
     }
+
+    orderIdRef = createRef()
 
     componentDidMount() {
         const allProducts = [];
@@ -54,30 +57,50 @@ class NewOrder extends Component {
         const objectToAdd = this.state.matchArray.find(product => product.aeroCode == theCode)
         this.setState({orderList:[...this.state.orderList, objectToAdd]}, () => {
             console.log(this.state.orderList)
+            console.log(this.state.alreadyInOrder)
         })
-        // console.log(this.state.orderList)
+        this.setState({alreadyInOrder:[...this.state.alreadyInOrder, theCode]})
+        let elem = document.querySelector('#addProductTextField')
+        elem.value = ""
+        this.setState ({ matchArray: [] })  
     }
 
     addOrder = (e) => {
         e.preventDefault()
+        // to send the below
+        // axios.post(req, res)
+        //     res.send(
+        //     products: this.state.orderList
+        //     orderID: this.orderIdRef.current.value
+        //     )
     }
 
     render() {
-    // console.log(this.state)
-    const suggestions = this.state.matchArray.map((suggestion, index) => {
-        return(
-        <li key={index} onClick={this.addProduct}>
-        Product: {suggestion.productName}, 
-        Aerocode: {suggestion.aeroCode}, 
-        Size: {suggestion.size}, 
-        Colour: {suggestion.color}, 
-        Barcode: {suggestion.barcode}, 
-        Stock Count: {suggestion.stockCount}
-        </li>)})
-    
-    // console.log(suggestions)
-        return (
+    const suggestions = this.state.matchArray.filter((suggestion) => {
+        return !this.state.alreadyInOrder.includes(suggestion.aeroCode)
+    })
 
+    const result = suggestions.map((suggestion, index) => {
+        return(
+            <li key={index} onClick={this.addProduct}>
+            Product: {suggestion.productName}, 
+            Aerocode: {suggestion.aeroCode}, 
+            Size: {suggestion.size}, 
+            Colour: {suggestion.color}, 
+            Barcode: {suggestion.barcode}, 
+            Stock Count: {suggestion.stockCount}
+        </li>)})
+
+    const orderContents = this.state.orderList.map((product, index) => {
+        return(
+            <p key={index}>
+        Product: {product.productName}, Aerocode: {product.aeroCode}, Size: {product.size}, 
+        Colour: {product.color}, Barcode: {product.barcode}, Stock Count: {product.stockCount}
+            </p>
+        )
+    })
+
+        return (
             <div id="crud-container">
             <h2>Add Order</h2>
             <p>Please enter the details of the new order below</p>
@@ -85,17 +108,18 @@ class NewOrder extends Component {
                 <form onSubmit={this.addOrder}>
                     <p>
                         <label htmlFor="orderId">Order ID: </label>
-                        <input type="text" id="orderId" onChange={this.inputChange}></input><br />
+                        <input type="text" ref={this.orderIdRef} id="orderId" onChange={this.inputChange}></input><br />
                     </p>
                     <p>
                         <label htmlFor="addProduct">Add Product: </label>
-                        <input type="text" id="addProduct" onChange={this.displayMatches}></input><br />
+                        <input type="text" id="addProductTextField" onChange={this.displayMatches}></input><br />
                     </p>
                     <div className="suggestions">
-                        <ul>{suggestions}</ul>
+                        <ul> {result} </ul>
                     </div>
-                    <div className="currentOrder">
-                        {this.basketProduct}
+                    <div className="orderContents">
+                        <h2> Current Order Contents</h2>
+                        <ul>{orderContents}</ul>
                     </div>
                     <button id="submit">Add Order</button>
                 </form>
