@@ -90,7 +90,7 @@ class NewOrder extends Component {
             Barcode: {suggestion.barcode}, 
             Stock Count: {suggestion.stockCount}
         </li>)})
-
+        
     const orderContents = this.state.orderList.map((product, index) => {
         return(
             <p key={index}>
