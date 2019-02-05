@@ -82,7 +82,7 @@ class NewOrder extends Component {
 
     const result = suggestions.map((suggestion, index) => {
         return(
-            <li key={index} onClick={this.addProduct}>
+            <li key={index} onClick={this.addProduct} className="suggested-list-item">
             Product: {suggestion.productName}, 
             Aerocode: {suggestion.aeroCode}, 
             Size: {suggestion.size}, 
