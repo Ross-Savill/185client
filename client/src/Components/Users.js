@@ -12,6 +12,7 @@ class Users extends Component {
       username: "",
       passport: "",
       role: "",
+      addError: null
     }
   }
 
@@ -39,7 +40,7 @@ class Users extends Component {
     const userArray = this.state.users
     if(userArray){
       return (
-        userArray.map((user, i) => <li><strong>User: </strong> {user.username} ({user.role}) <button id="edit" data-user={user._id}>Edit</button> <button id={user._id} onClick={this.deleteUser}>Delete</button></li>)
+        userArray.map((user, i) => <li><strong>{user.username}</strong> ({user.role}) <button id="edit" data-user={user._id}>Edit</button> <button id={user._id} onClick={this.deleteUser}>Delete</button></li>)
       )}
   }
 
@@ -65,15 +66,15 @@ class Users extends Component {
       password: password,
       role: admin
     })
-    .then(this.setState({username: "", password: "", role: ""}))
+      .then(res => {
+        this.setState({addError: res.data.message})
+      })
   }
 
   deleteUser = (e) => {
-    console.log(e.currentTarget.id)
-    axios.delete('https://vast-earth-81912.herokuapp.com/auth/users', { body: {
-        "_id": e.currentTarget.id
-      }
-    })
+    e.preventDefault()
+    const {id} = e.currentTarget
+    axios.delete('https://vast-earth-81912.herokuapp.com/auth/users', {data: {'_id': id}})
   }
 
   render() {
@@ -90,7 +91,7 @@ class Users extends Component {
           </ul>
           <hr />
           <h3>Add User</h3>
-          <p></p>
+          <p id="error">{this.state.addError && this.state.addError}</p>
           <form>
             <label htmlFor="username">Username: </label><br />
             <input type="text" id="username" onChange={this.inputChange}></input><br />

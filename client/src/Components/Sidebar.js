@@ -30,10 +30,8 @@ class Sidebar extends Component {
     if(this.state.role === 'admin'){
       return(
       <ul>
-        <li>Users</li>
-        <hr />
+        <li><strong>Users</strong></li>
         <li><Link to="/dashboard/users">Manage Users</Link></li>
-        <li><Link to="/dashboard/users/add">Add</Link></li>
       </ul>)
     }
   }
@@ -49,13 +47,11 @@ class Sidebar extends Component {
             </div>
             <div id ="navmenu">
               <ul>
-                <li>Stock</li>
-                <hr />
+                <li><strong>Stock</strong></li>
                 <li><Link to="/dashboard/inventory">Manage Stock</Link></li>
               </ul>
               <ul>
-                <li>Orders</li>
-                <hr />
+                <li><strong>Orders</strong></li>
                 <li><Link to="/dashboard/orders">Manage Orders</Link></li>
                 <li><Link to="/dashboard/orders/add">Add</Link></li>
                 <li><Link to="/dashboard/orders/edit">Edit</Link></li>
