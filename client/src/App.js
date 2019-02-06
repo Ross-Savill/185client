@@ -10,6 +10,8 @@ import PickList from './Components/PickList'
 import Dashboard from './Components/Dashboard'
 import Inventory from './Components/Inventory'
 import Users from './Components/Users'
+import Orders from './Components/Orders'
+
 
 class App extends Component {
   render() {
@@ -33,6 +35,7 @@ class App extends Component {
           <Route path="/dashboard/users" exact component={Users}/>
 
           <Route path="/dashboard/orders/:orderID/pick" component={PickList} />
+          <Route path="/dashboard/orders/" exact component={Orders}/>
           <Route path="/neworder" component={NewOrder} />
         </>
       </Router>

@@ -11,7 +11,8 @@ class PickList extends Component {
       orderStatus: "",
       orderProducts: [],
       online: false,
-      error: false
+      error: false,
+      errorMessage: ""
     }
   }
 
@@ -26,9 +27,9 @@ class PickList extends Component {
       self.setState({online: false})
     });
 
-    socket.on('error', function() {
+    socket.on('error', function(errorMessage) {
       console.log('error')
-      self.setState({error: true})
+      self.setState({error: true, errorMessage})
     })
 
     socket.on('triggerUpdate', function () {

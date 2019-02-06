@@ -45,7 +45,7 @@ class Inventory extends Component {
     }
   }
 
-  componentDidMount() {
+  getDatabase = () => {
     axios.get('https://vast-earth-81912.herokuapp.com/inventory/product/all')
       .then(result => {
         if(result.data.success) {
@@ -55,6 +55,10 @@ class Inventory extends Component {
           // error
         }
       })
+  }
+
+  componentDidMount() {
+    this.getDatabase()
   }
 
    handleClose = () => {
@@ -78,6 +82,7 @@ class Inventory extends Component {
     })
     .then(response => {
       if(response.data.success) {
+        this.getDatabase()
         this.setState({alertMessage:true , alertMessageText: `${this.state.remove.productName} has been deleted!`, alertMessageType: "", openDelete: false})
       } else {
         this.setState({alertMessage:true , alertMessageText: `ERROR: ${response.data.message}`, alertMessageType: "", openDelete: false})
@@ -192,6 +197,7 @@ class Inventory extends Component {
     .then(response => {
       if(response.data.success) {
         this.setState({alertMessage:true , alertMessageText: `${this.state.remove.productName} has been restored!`, alertMessageType: "", openEdit: false})
+        this.getDatabase()
       } else {
         this.setState({alertMessage:true , alertMessageText: `ERROR: ${response.data.message}`, alertMessageType: "", openEdit: false})
       }
@@ -225,15 +231,14 @@ class Inventory extends Component {
 
   render() {
     return (
-      <div id="crud-container">
-        <div className="container">
-          <AddInventory/>
-          {this.messageBox()}
-          {this.openEditModal()}
-          {this.openDeleteModal()}
-          {this.datatablePage()}
-        </div>
+      <div className="container">
+      <AddInventory/>
+      {this.messageBox()}
+      {this.openEditModal()}
+      {this.openDeleteModal()}
+      {this.datatablePage()}
       </div>
+
     )}
 }
 
