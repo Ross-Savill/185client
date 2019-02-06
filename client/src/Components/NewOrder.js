@@ -65,14 +65,22 @@ class NewOrder extends Component {
         this.setState ({ matchArray: [] })  
     }
 
+    handleQuantityChange(value, barcode) {
+        console.log(value)
+        console.log(barcode)
+        const objToAddQtyTo = this.state.orderList.find(product => product.barcode == barcode)
+        objToAddQtyTo.quantity = value
+        console.log(objToAddQtyTo)
+    }
+
     addOrder = (e) => {
         e.preventDefault()
-        // to send the below
-        // axios.post(req, res)
+        // axios.post(req, res) {
         //     res.send(
         //     products: this.state.orderList
         //     orderID: this.orderIdRef.current.value
         //     )
+        // }
     }
 
     render() {
@@ -90,13 +98,29 @@ class NewOrder extends Component {
             Barcode: {suggestion.barcode}, 
             Stock Count: {suggestion.stockCount}
         </li>)})
-        
+// onChange={() => this.handleQuantityChange(index)}
+
     const orderContents = this.state.orderList.map((product, index) => {
         return(
-            <p key={index}>
-        Product: {product.productName}, Aerocode: {product.aeroCode}, Size: {product.size}, 
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <td>Product</td>
+                        <td>Quantity</td>
+                    </tr>
+                </thead>
+                    <tbody>
+                        <tr> 
+                        <td><p key={index}>
+        {product.productName}, Aerocode: {product.aeroCode}, Size: {product.size}, 
         Colour: {product.color}, Barcode: {product.barcode}, Stock Count: {product.stockCount}
-            </p>
+            </p></td>
+                        <td><input type="number" pattern="\d*" onChange={(e) => this.handleQuantityChange(e.currentTarget.value, product.barcode)}></input></td>
+                        </tr>
+                    </tbody>
+            </table>
+        </div>
         )
     })
 
