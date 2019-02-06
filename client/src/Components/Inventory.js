@@ -14,7 +14,6 @@ import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import AddInventory from './AddInventory'
-import EditInventory from './EditInventory'
 class Inventory extends Component {
   constructor(props) {
     super(props);
