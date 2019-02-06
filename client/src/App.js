@@ -19,16 +19,11 @@ class App extends Component {
           <Route path="/login" exact component={LoginForm} />
           <Route path="/register" component={RegisterForm} />
 
-          <Route path="/" component={Dashboard} />
+          <Route path="/" exact component={Dashboard} />
           <Route path="/dashboard" component={Dashboard} />
           <Route path="/inventory" component={Inventory} />
 
           <Route path="/dashboard/inventory" component={Inventory} />
-
-          {/* <Route path="/dashboard/products" component= /> */}
-          <Route path="/dashboard/products/add" component={NewProduct}/>
-          {/* <Route path="/dashboard/products/delete" component= />
-          <Route path="/dashboard/products/edit" component= /> */}
 
           {/* <Route path="/dashboard/orders" component= /> */}
           <Route path="/dashboard/orders/add" component={NewOrder}/>
@@ -37,7 +32,7 @@ class App extends Component {
 
           <Route path="/dashboard/users" exact component={Users}/>
 
-          <Route path="/orders/:orderID/pick" exact component={PickList} />
+          <Route path="/dashboard/orders/:orderID/pick" component={PickList} />
           <Route path="/neworder" component={NewOrder} />
         </>
       </Router>

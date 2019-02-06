@@ -29,10 +29,11 @@ class Sidebar extends Component {
   showUserLink = () => {
     if(this.state.role === 'admin'){
       return(
-      <ul>
+        <>
         <li><strong>Users</strong></li>
         <li><Link to="/dashboard/users">Manage Users</Link></li>
-      </ul>)
+        </>
+      )
     }
   }
 
@@ -40,23 +41,21 @@ class Sidebar extends Component {
     if(!this.state.loggedOut){
       return (
         <>
-          <div id="sidebar">
+          <div id="navbar">
             <div id="userbox">
-            👋🏻 Welcome, {this.state.username && this.state.username}<br />
+            👋🏻 Welcome, {this.state.username && this.state.username} 
               <button onClick={this.logout}>Log out</button>
             </div>
             <div id ="navmenu">
               <ul>
-                <li><strong>Stock</strong></li>
+                <li><strong>Stock</strong></li>:
                 <li><Link to="/dashboard/inventory">Manage Stock</Link></li>
-              </ul>
-              <ul>
-                <li><strong>Orders</strong></li>
+                <li>| <strong>Orders</strong></li>
                 <li><Link to="/dashboard/orders">Manage Orders</Link></li>
                 <li><Link to="/dashboard/orders/add">Add</Link></li>
                 <li><Link to="/dashboard/orders/edit">Edit</Link></li>
+                |{this.state.role === "admin" ? this.showUserLink() : ""}
               </ul>
-              {this.state.role === "admin" ? this.showUserLink() : ""}
             </div>
           </div>
         </>

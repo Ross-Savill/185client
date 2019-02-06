@@ -40,7 +40,7 @@ class LoginForm extends Component {
     const {authenticated} = this.state
 
     if(authenticated) {
-      return <Redirect to="/dashboard" />
+      return <Redirect to="/dashboard/inventory" />
     }
 
     return (
