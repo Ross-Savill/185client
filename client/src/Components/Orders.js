@@ -39,7 +39,7 @@ class Orders extends Component {
 
   redirect = (orderID) => {
     if(this.state.redirect) {
-      return <Redirect to="/HomePage" />
+      return <Redirect to="/orders/127/pick"/>
     }
   }
 
@@ -108,6 +108,9 @@ class Orders extends Component {
   pickList = (orderID) => {
     this.setState({orderID, redirect:true})
   }
+
+
+
   openOrderTable = () => {
     const columns = ["Order ID", "Products", "Status", "Created", "Completed", "", ""];
     const data = []

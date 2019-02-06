@@ -38,7 +38,7 @@ class App extends Component {
           <Route path="/dashboard/orders/edit" component= /> */}
 
           <Route path="/dashboard/users" exact component={Users}/>
-          <Route path="/orders/" component={Orders}/>
+          <Route path="/orders/" exact component={Orders}/>
           <Route path="/orders/:orderID/pick" exact component={PickList} />
           <Route path="/neworder" component={NewOrder} />
         </>
