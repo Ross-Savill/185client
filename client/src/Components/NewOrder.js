@@ -162,11 +162,11 @@ class NewOrder extends Component {
             <hr />
                 <form onSubmit={this.addOrder}>
                     <p>
-                        <label htmlFor="orderId">Order ID: </label>
+                        <label htmlFor="orderId">Order ID: </label><br />
                         <input type="text" id="orderId" onChange={this.inputOrderIdChange}></input><br />
                     </p>
                     <p>
-                        <label htmlFor="addProduct">Add Product: </label>
+                        <label htmlFor="addProduct">Add Product: </label><br />
                         <input type="text" id="addProductTextField" onChange={this.displayMatches}></input><br />
                     </p>
                     <div className="suggestions">
