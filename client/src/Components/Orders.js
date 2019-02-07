@@ -375,15 +375,16 @@ return (
   render() {
     return (
       <>
-        {this.messageBox()}
-        {this.redirect()}
-        {this.openOrderTable()}
-        <br/><br/>
-        {this.closedOrderTable()}
-        <br/><br/>
-        {this.cancelledOrderTable()}
-        {this.orderModal()}
-
+        <div id="crud-container">
+          {this.messageBox()}
+          {this.redirect()}
+          {this.openOrderTable()}
+          <br/><br/>
+          {this.closedOrderTable()}
+          <br/><br/>
+          {this.cancelledOrderTable()}
+          {this.orderModal()}
+        </div>
       </>
     );
   }

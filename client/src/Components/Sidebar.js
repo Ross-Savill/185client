@@ -30,8 +30,7 @@ class Sidebar extends Component {
     if(this.state.role === 'admin'){
       return(
         <>
-        <li><strong>Users</strong></li>
-        <li><Link to="/dashboard/users">Manage Users</Link></li>
+          <li><Link to="/dashboard/users">Manage Users</Link></li>
         </>
       )
     }
@@ -48,13 +47,11 @@ class Sidebar extends Component {
             </div>
             <div id ="navmenu">
               <ul>
-                <li><strong>Stock</strong></li>:
-                <li><Link to="/dashboard/inventory">Manage Stock</Link></li>
-                <li>| <strong>Orders</strong></li>
-                <li><Link to="/dashboard/orders">Manage Orders</Link></li>
-                <li><Link to="/dashboard/orders/add">Add</Link></li>
-                <li><Link to="/dashboard/orders/edit">Edit</Link></li>
-                |{this.state.role === "admin" ? this.showUserLink() : ""}
+                <li><Link to="/dashboard/inventory">Manage Stock</Link> |</li>
+                <li><Link to="/dashboard/orders">Manage Orders</Link> |</li>
+                <li><Link to="/dashboard/orders/add">Add Order</Link> |</li>
+                <li><Link to="/dashboard/orders/edit">Edit Order</Link> |</li>
+                {this.state.role === "admin" ? this.showUserLink() : ""}
               </ul>
             </div>
           </div>
