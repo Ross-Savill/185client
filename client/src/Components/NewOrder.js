@@ -59,7 +59,6 @@ class NewOrder extends Component {
         const theCodeArray = aerocodeArray.splice(1, 1) // JUST THE CODE IN AN ARRAY
         const theCode = theCodeArray.toString()         // FINALLY THE CODE I NEED
         const objectToAdd = this.state.matchArray.find(product => product.aeroCode == theCode)
-        objectToAdd.quantity = 33
         this.setState({orderList:[...this.state.orderList, objectToAdd]})
         this.setState({alreadyInOrder:[...this.state.alreadyInOrder, theCode]})
         let elem = document.querySelector('#addProductTextField')
@@ -92,13 +91,24 @@ class NewOrder extends Component {
     addOrder = (e) => {
         e.preventDefault()
         const { orderId, orderList } = this.state
-        axios.post('https://vast-earth-81912.herokuapp.com/orders', {
-            orderID: orderId,
-            productsList: orderList
-        })
-        .then(response => {
-            console.log(response)
-        })
+        let errors = 0;
+        for (let i=0; i < orderList.length; i++) {
+            if (orderList[i].quantity <= 0 || typeof orderList[i].quantity == 'null' || typeof orderList[i].quantity == 'undefined') {
+                errors++
+            }
+        }
+        if (errors > 0) {
+            return alert("Please check product quantities")
+        } else {
+            axios.post('https://vast-earth-81912.herokuapp.com/orders', {
+                orderID: orderId,
+                productsList: orderList
+            })
+            .then(response => {
+                console.log(response)
+            })
+        }
+      
 
 
         // axios.post(req, res) {
