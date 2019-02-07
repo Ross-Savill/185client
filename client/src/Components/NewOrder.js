@@ -7,11 +7,10 @@ class NewOrder extends Component {
     state = {
         endpoint: "https://vast-earth-81912.herokuapp.com/inventory/product/all",
         matchArray: [],
+        orderId: null,
         orderList:[],
         alreadyInOrder: []
     }
-
-    orderIdRef = createRef()
 
     componentDidMount() {
         const allProducts = [];
@@ -24,6 +23,11 @@ class NewOrder extends Component {
             console.log(err)
         })
     }
+
+  inputOrderIdChange = (e) => {
+        const orderId = e.currentTarget.value
+        this.setState({ orderId })
+  }
 
   findMatches = (wordToMatch, allProducts) => {
     return allProducts.filter(products => {
@@ -87,6 +91,16 @@ class NewOrder extends Component {
 
     addOrder = (e) => {
         e.preventDefault()
+        const { orderId, orderList } = this.state
+        axios.post('https://vast-earth-81912.herokuapp.com/orders', {
+            orderID: orderId,
+            productsList: orderList
+        })
+        .then(response => {
+            console.log(response)
+        })
+
+
         // axios.post(req, res) {
         //     res.send(
         //     products: this.state.orderList
@@ -148,7 +162,7 @@ class NewOrder extends Component {
                 <form onSubmit={this.addOrder}>
                     <p>
                         <label htmlFor="orderId">Order ID: </label>
-                        <input type="text" ref={this.orderIdRef} id="orderId" onChange={this.inputChange}></input><br />
+                        <input type="text" id="orderId" onChange={this.inputOrderIdChange}></input><br />
                     </p>
                     <p>
                         <label htmlFor="addProduct">Add Product: </label>
