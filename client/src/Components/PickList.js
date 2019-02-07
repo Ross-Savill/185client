@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import '../Styles/Picklist.css';
 import axios from 'axios';
-import io from 'socket.io-client'
+import io from 'socket.io-client';
+import { Link } from "react-router-dom";
 
 class PickList extends Component {
   constructor(props) {
@@ -154,8 +155,7 @@ class PickList extends Component {
             {orders}
 
             <br/><br/><br/>
-            <a href="/orders"><button>Back</button></a>
-            <button id="finish-pick">Done</button>
+            <Link to="/dashboard/orders">Back to Orders</Link>
 
         </div>
       </>
