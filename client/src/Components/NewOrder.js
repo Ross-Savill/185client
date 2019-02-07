@@ -108,15 +108,6 @@ class NewOrder extends Component {
                 console.log(response)
             })
         }
-      
-
-
-        // axios.post(req, res) {
-        //     res.send(
-        //     products: this.state.orderList
-        //     orderID: this.orderIdRef.current.value
-        //     )
-        // }
     }
 
     render() {
