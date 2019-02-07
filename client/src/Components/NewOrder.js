@@ -7,11 +7,10 @@ class NewOrder extends Component {
     state = {
         endpoint: "https://vast-earth-81912.herokuapp.com/inventory/product/all",
         matchArray: [],
+        orderId: null,
         orderList:[],
         alreadyInOrder: []
     }
-
-    orderIdRef = createRef()
 
     componentDidMount() {
         const allProducts = [];
@@ -25,6 +24,11 @@ class NewOrder extends Component {
         })
     }
 
+  inputOrderIdChange = (e) => {
+        const orderId = e.currentTarget.value
+        this.setState({ orderId })
+  }
+
   findMatches = (wordToMatch, allProducts) => {
     return allProducts.filter(products => {
       const regex = new RegExp(wordToMatch, 'gi');
@@ -37,7 +41,7 @@ class NewOrder extends Component {
         if (this.state.allProducts) {
             const { allProducts } = this.state
             const matchArray = this.findMatches(value, allProducts);
-            console.log(matchArray)
+            // console.log(matchArray)
             if(e.currentTarget.value == "") {
                 this.setState ({ matchArray: [] })          
             } else {
@@ -55,10 +59,8 @@ class NewOrder extends Component {
         const theCodeArray = aerocodeArray.splice(1, 1) // JUST THE CODE IN AN ARRAY
         const theCode = theCodeArray.toString()         // FINALLY THE CODE I NEED
         const objectToAdd = this.state.matchArray.find(product => product.aeroCode == theCode)
-        this.setState({orderList:[...this.state.orderList, objectToAdd]}, () => {
-            console.log(this.state.orderList)
-            console.log(this.state.alreadyInOrder)
-        })
+        objectToAdd.quantity = 33
+        this.setState({orderList:[...this.state.orderList, objectToAdd]})
         this.setState({alreadyInOrder:[...this.state.alreadyInOrder, theCode]})
         let elem = document.querySelector('#addProductTextField')
         elem.value = ""
@@ -66,15 +68,39 @@ class NewOrder extends Component {
     }
 
     handleQuantityChange(value, barcode) {
-        console.log(value)
-        console.log(barcode)
         const objToAddQtyTo = this.state.orderList.find(product => product.barcode == barcode)
         objToAddQtyTo.quantity = value
-        console.log(objToAddQtyTo)
+        // console.log(this.state.orderList)
+    }
+
+    handleCopy(barcode) {
+        // const orderListCopy = [...this.state.orderList]
+        const {orderList} = this.state
+        const objToDelete = orderList.find(product => product.barcode === barcode)
+        const index = orderList.indexOf(objToDelete)
+        orderList.splice(index, 1)
+        return orderList
+    }
+
+    handleDeleteProduct(barcode) {
+        const result = this.handleCopy(barcode)
+        this.setState({orderList: result}, () => {
+            console.log('done')
+        })
     }
 
     addOrder = (e) => {
         e.preventDefault()
+        const { orderId, orderList } = this.state
+        axios.post('https://vast-earth-81912.herokuapp.com/orders', {
+            orderID: orderId,
+            productsList: orderList
+        })
+        .then(response => {
+            console.log(response)
+        })
+
+
         // axios.post(req, res) {
         //     res.send(
         //     products: this.state.orderList
@@ -84,6 +110,7 @@ class NewOrder extends Component {
     }
 
     render() {
+    console.log(this.state.orderList)
     const suggestions = this.state.matchArray.filter((suggestion) => {
         return !this.state.alreadyInOrder.includes(suggestion.aeroCode)
     })
@@ -98,26 +125,29 @@ class NewOrder extends Component {
             Barcode: {suggestion.barcode}, 
             Stock Count: {suggestion.stockCount}
         </li>)})
-// onChange={() => this.handleQuantityChange(index)}
 
     const orderContents = this.state.orderList.map((product, index) => {
         return(
-        <div>
+        <div key={product.barcode}>
             <table>
                 <thead>
                     <tr>
-                        <td>Product</td>
-                        <td>Quantity</td>
+                        <td><strong><em>Item #{index + 1}</em></strong></td>
                     </tr>
                 </thead>
                     <tbody>
-                        <tr> 
-                        <td><p key={index}>
-        {product.productName}, Aerocode: {product.aeroCode}, Size: {product.size}, 
-        Colour: {product.color}, Barcode: {product.barcode}, Stock Count: {product.stockCount}
-            </p></td>
-                        <td><input type="number" pattern="\d*" onChange={(e) => this.handleQuantityChange(e.currentTarget.value, product.barcode)}></input></td>
-                        </tr>
+                            <tr><strong>Product:</strong> {product.productName}</tr> 
+                            <tr><strong>Aerocode:</strong> {product.aeroCode}</tr> 
+                            <tr><strong>Size:</strong> {product.size}</tr>
+                            <tr><strong>Colour:</strong> {product.color}</tr>
+                            <tr><strong>Barcode:</strong> {product.barcode}</tr>
+                            <tr><strong>Stock Count:</strong> {product.stockCount}</tr>
+                            <label> Quantity: </label>
+                            {/* <Quantity value={product.quantity} product={product} onChange={(e) => this.handleQuantityChange(e.target.value, product.barcode)} /> */}
+                            <tr><input type="number" pattern="\d*" onChange={(e) => this.handleQuantityChange(e.target.value, product.barcode)}></input></tr>
+                            <td><button onClick={() => this.handleDeleteProduct(product.barcode)}>Delete</button></td>
+                            <hr/>
+                            <br/>
                     </tbody>
             </table>
         </div>
@@ -132,7 +162,7 @@ class NewOrder extends Component {
                 <form onSubmit={this.addOrder}>
                     <p>
                         <label htmlFor="orderId">Order ID: </label>
-                        <input type="text" ref={this.orderIdRef} id="orderId" onChange={this.inputChange}></input><br />
+                        <input type="text" id="orderId" onChange={this.inputOrderIdChange}></input><br />
                     </p>
                     <p>
                         <label htmlFor="addProduct">Add Product: </label>
