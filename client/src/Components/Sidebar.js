@@ -50,7 +50,6 @@ class Sidebar extends Component {
                 <li><Link to="/dashboard/inventory">Manage Stock</Link> |</li>
                 <li><Link to="/dashboard/orders">Manage Orders</Link> |</li>
                 <li><Link to="/dashboard/orders/add">Add Order</Link> |</li>
-                <li><Link to="/dashboard/orders/edit">Edit Order</Link> |</li>
                 {this.state.role === "admin" ? this.showUserLink() : ""}
               </ul>
             </div>
