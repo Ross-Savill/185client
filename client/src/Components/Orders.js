@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {ReactDOM} from "react-dom";
-import {Redirect} from "react-router-dom"
+import {Redirect, Link} from "react-router-dom"
 import MUIDataTable from "mui-datatables";
 import axios from 'axios';
 import Button from '@material-ui/core/Button';
@@ -16,6 +16,7 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Badge from '@material-ui/core/Badge';
 import Timestamp from 'react-timestamp';
+import NewOrder from './NewOrder';
 
 class Orders extends Component {
 
@@ -34,7 +35,8 @@ class Orders extends Component {
     pickCost:0.50,
     redirect: false,
     showAlert: false,
-    alertMessageText: ""
+    alertMessageText: "",
+    redirectCreate: false
   }
 
   redirect = () => {
@@ -373,10 +375,22 @@ return (
     return profit;
   }
 
+  redirectToCreate = () => {
+    this.setState({redirectCreate: true})
+  }
+
+  redirectCreate = () => {
+    if (this.state.redirectCreate) {
+      return <Redirect to="/dashboard/neworders"/>
+    }
+  }
+
   render() {
     return (
       <>
         <div id="crud-container">
+        <Button variant="contained" color="primary" onClick={this.redirectToCreate}>Create Order</Button>
+          {this.redirectCreate()}
           {this.messageBox()}
           {this.redirect()}
           {this.openOrderTable()}

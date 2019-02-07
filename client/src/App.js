@@ -27,7 +27,7 @@ class App extends Component {
           <Route path="/dashboard/users" exact component={Users}/>
           <Route path="/dashboard/orders/" exact component={Orders}/>
           <Route path="/dashboard/orders/:orderID/pick" component={PickList} />
-          <Route path="/neworder" component={NewOrder} />
+          <Route path="/dashboard/neworder" component={NewOrder} />
         </>
       </Router>
     );
