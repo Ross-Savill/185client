@@ -85,6 +85,7 @@ class Users extends Component {
     })
       .then(res => {
         this.setState({addError: res.data.message})
+        this.loadDatabase()
       })
   }
 
@@ -92,6 +93,15 @@ class Users extends Component {
     e.preventDefault()
     const {id} = e.currentTarget
     axios.delete('https://vast-earth-81912.herokuapp.com/auth/users', {data: {'_id': id}})
+      .then(response => {
+        if(response.data.success) {
+          this.setState({showAlert:true, alertMessageText:response.data.message})
+          this.loadDatabase()
+        } else {
+          this.setState({showAlert:true, alertMessageText:response.data.message})
+        }
+      })
+
   }
 
   changePassword = (e) => {
