@@ -162,6 +162,6 @@ html {
 }
 
 .suggested-list-item:hover {
-  background: lightpink;
+  background: lightblue;
   cursor: pointer;
 }
