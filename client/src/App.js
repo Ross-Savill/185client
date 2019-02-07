@@ -5,7 +5,6 @@ import LoginForm from './Components/LoginForm';
 import RegisterForm from './Components/RegisterForm';
 import NewProduct from './Components/NewProduct';
 import NewOrder from './Components/NewOrder';
-import OrdersList from './Components/OrdersList'
 import PickList from './Components/PickList'
 import Dashboard from './Components/Dashboard'
 import Inventory from './Components/Inventory'
