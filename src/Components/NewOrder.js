@@ -41,7 +41,6 @@ class NewOrder extends Component {
         if (this.state.allProducts) {
             const { allProducts } = this.state
             const matchArray = this.findMatches(value, allProducts);
-            // console.log(matchArray)
             if(e.currentTarget.value == "") {
                 this.setState ({ matchArray: [] })          
             } else {
@@ -72,8 +71,14 @@ class NewOrder extends Component {
         // console.log(this.state.orderList)
     }
 
-    handleCopy(barcode) {
-        // const orderListCopy = [...this.state.orderList]
+    handleDeleteAerocode(aerocode) {
+        const {alreadyInOrder} = this.state
+        const index = alreadyInOrder.indexOf(aerocode)
+        alreadyInOrder.splice(index, 1)
+        return alreadyInOrder
+    }
+    
+    handleDeleteObject(barcode) {
         const {orderList} = this.state
         const objToDelete = orderList.find(product => product.barcode === barcode)
         const index = orderList.indexOf(objToDelete)
@@ -81,12 +86,14 @@ class NewOrder extends Component {
         return orderList
     }
 
-    handleDeleteProduct(barcode) {
-        const result = this.handleCopy(barcode)
-        this.setState({orderList: result}, () => {
-            console.log('done')
+    handleDeleteProduct(barcode, aerocode) {
+        const result = this.handleDeleteObject(barcode)
+        this.setState({orderList: result})
+        const alreadyInOrderUpdate = this.handleDeleteAerocode(aerocode)
+        this.setState({alreadyInOrder: alreadyInOrderUpdate}, () => {
+            console.log(this.state.alreadyInOrder)
         })
-    }
+        }   
 
     addOrder = (e) => {
         e.preventDefault()
@@ -146,7 +153,7 @@ class NewOrder extends Component {
                             <label> Quantity: </label>
                             {/* <Quantity value={product.quantity} product={product} onChange={(e) => this.handleQuantityChange(e.target.value, product.barcode)} /> */}
                             <tr><input type="number" pattern="\d*" onChange={(e) => this.handleQuantityChange(e.target.value, product.barcode)}></input></tr>
-                            <td><button onClick={() => this.handleDeleteProduct(product.barcode)}>Delete</button></td>
+                            <td><button onClick={() => this.handleDeleteProduct(product.barcode, product.aeroCode)}>Delete</button></td>
                             <hr/>
                             <br/>
                     </tbody>
