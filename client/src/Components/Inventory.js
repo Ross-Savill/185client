@@ -103,7 +103,7 @@ class Inventory extends Component {
   }
 
   datatablePage = () => {
-    const columns = ["Product Name", "Size", "Color", "Stock Count", "Barcode", "Aerocode", ""];
+    const columns = ["Product Name", "Size", "Color", "Stock Count", "Barcode", "Aerocode", "", ""];
     const data = []
     const { inventory } = this.state
     inventory.map((item) => {
@@ -114,7 +114,8 @@ class Inventory extends Component {
             item.stockCount,
             item.barcode,
             item.aeroCode,
-            <> <i onClick={() => this.editModal(item)} className="fas fa-pencil-alt"></i> <i onClick={() => this.deleteModal(item)} className="fas fa-trash"></i></>
+            <i onClick={() => this.editModal(item)} className="fas fa-pencil-alt"></i>,
+            <i onClick={() => this.deleteModal(item)} className="fas fa-trash"></i>
           ]
       data.push(temp)
     })

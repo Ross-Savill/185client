@@ -37,9 +37,11 @@ class Orders extends Component {
     alertMessageText: ""
   }
 
-  redirect = (orderID) => {
+  redirect = () => {
     if(this.state.redirect) {
-      return <Redirect to="/orders/127/pick"/>
+      const {orderID} = this.state
+      const url = `/dashboard/orders/${orderID}/pick`
+      return <Redirect to={url}/>
     }
   }
 
@@ -116,7 +118,6 @@ class Orders extends Component {
     const data = []
     const { openOrders } = this.state
     openOrders.map((item) => {
-
       let temp = [
             '#'+item.orderID,
             item.products.length,
