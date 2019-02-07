@@ -57,7 +57,7 @@ class Users extends Component {
     const userArray = this.state.users
     if(userArray){
       return (
-        userArray.map((user, i) => <li><strong>{user.username}</strong> ({user.role}) <button className="btn btn-primary" id="edit" onClick={ () => {this.openEdit(user)}} data-user={user._id}>Edit</button> {i != 0 ? <button className="btn btn-primary" id={user._id} onClick={this.deleteUser}>Delete</button>:null}</li>)
+        userArray.map((user, i) => <li><strong>{user.username}</strong> ({user.role}) <button className="btn btn-primary btn-sm" id="edit" onClick={ () => {this.openEdit(user)}} data-user={user._id}>Edit</button> {i != 0 ? <button className="btn btn-danger btn-sm" id={user._id} onClick={this.deleteUser}>Delete</button>:null}</li>)
       )}
   }
 

@@ -381,7 +381,7 @@ return (
 
   redirectCreate = () => {
     if (this.state.redirectCreate) {
-      return <Redirect to="/dashboard/neworders"/>
+      return <Redirect to="/dashboard/orders/add"/>
     }
   }
 
