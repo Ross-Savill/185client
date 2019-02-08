@@ -67,6 +67,10 @@ class PickList extends Component {
   componentDidMount() {
     this.connectToBarcode()
     this.retrieveData()
+    const orderID = params.orderID;
+    axios.post('https://vast-earth-81912.herokuapp.com/orders/currentOrder', {
+      orderID
+    })
   }
 
   listOrders = () => {
