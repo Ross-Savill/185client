@@ -71,6 +71,10 @@ class PickList extends Component {
     axios.post('https://vast-earth-81912.herokuapp.com/orders/currentOrder', {
       orderID
     })
+    .then(resposne => {
+      console.log(response)
+    })
+    console.log(orderID)
   }
 
   listOrders = () => {
